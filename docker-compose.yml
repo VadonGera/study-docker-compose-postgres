@@ -1,0 +1,31 @@
+name: study-docker-compose-postgres
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${SQL_DATABASE}
+    volumes:
+      - study_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready - U ${SQL_USER} -d ${SQL_DATABASE}
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    ports:
+      - "5432:5432"
+    networks:
+      - backend_nw
+
+volumes:
+  study_postgres_data:
+
+networks:
+  backend_nw:
+    driver: bridge
