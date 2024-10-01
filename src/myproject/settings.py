@@ -49,7 +49,47 @@ INSTALLED_APPS += [
     'accounts.apps.AccountsConfig',
 ]
 
+INSTALLED_APPS += [
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+]
+
 AUTH_USER_MODEL = 'accounts.User'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': os.getenv('SOCIAL_AUTH_GOOGLE_CLIENT_ID'),
+#             'secret': os.getenv('SOCIAL_AUTH_GOOGLE_CLIENT_SECRET'),
+#             'key': ''
+#         }
+#     }
+# }
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1  # ID сайта в Django (используется для multi-site)
+
+LOGIN_REDIRECT_URL = '/'  # Куда перенаправлять пользователя после логина
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Куда перенаправлять после выхода из аккаунта
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +99,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Добавляем это после всех стандартных middleware
+    'allauth.account.middleware.AccountMiddleware',  # Middleware для allauth
 ]
 
 ROOT_URLCONF = 'myproject.urls'
