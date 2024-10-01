@@ -134,8 +134,8 @@ DATABASES = {
         "NAME": str(os.getenv("SQL_DATABASE")),
         "USER": str(os.getenv("SQL_USER")),
         "PASSWORD": str(os.getenv("SQL_PASSWORD")),
-        "HOST": str(os.getenv("SQL_HOST")),
-        "PORT": str(os.getenv("SQL_PORT")),
+        "HOST": str(os.getenv("SQL_HOST", "127.0.0.1")),
+        "PORT": str(os.getenv("SQL_PORT", "5432")),
     }
 }
 
