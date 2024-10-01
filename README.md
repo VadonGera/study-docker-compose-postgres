@@ -1,4 +1,7 @@
 
+
+
+
     docker run --name db_docker -e POSTGRES_USER=my_django -e POSTGRES_PASSWORD=pass_my_django -e POSTGRES_DB=my_django -p 5432:5432 -d postgres
 
     pip install django
