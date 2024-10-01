@@ -10,11 +10,6 @@ services:
     build: ./src
     # Автоматически перезапускает контейнер, если он выходит из строя
     restart: always
-    # Используем значения переменных окружения из .env файла
-#    environment:
-#      - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
-#      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
-#      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
     # Миграции, создаем Superuser и запускаем встроенный сервер Django
     command: >
       bash -c "
@@ -65,8 +60,8 @@ services:
       retries: 3
       # Ожидание перед началом проверок
       start_period: 3s
-#    ports:
-#      - "5432:5432"  # Если нужно подключаться к базе данных с хоста (опционально)
+    #    ports:
+    #      - "5432:5432"  # Если нужно подключаться к базе данных с хоста (опционально)
     # Подключаем к сети my_backend
     networks:
       - my_backend

@@ -16,10 +16,8 @@ import os
 
 load_dotenv()
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -31,7 +29,6 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -58,16 +55,6 @@ INSTALLED_APPS += [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'APP': {
-#             'client_id': os.getenv('SOCIAL_AUTH_GOOGLE_CLIENT_ID'),
-#             'secret': os.getenv('SOCIAL_AUTH_GOOGLE_CLIENT_SECRET'),
-#             'key': ''
-#         }
-#     }
-# }
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -124,7 +111,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -138,14 +124,6 @@ DATABASES = {
         "PORT": str(os.getenv("SQL_PORT", "5432")),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -165,7 +143,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -182,7 +159,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -192,7 +168,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

@@ -1,10 +1,8 @@
 from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from rest_framework import permissions, viewsets
-
-# from serializers import GroupSerializer, UserSerializer
 from accounts.serializers import GroupSerializer, UserSerializer
-# from models import User
+
 User = get_user_model()
 
 
@@ -12,6 +10,7 @@ class IsAdminOrSuperuser(permissions.BasePermission):
     """
     Разрешение, позволяющее доступ только администраторам и суперпользователям.
     """
+
     def has_permission(self, request, view):
         return bool(request.user and (request.user.is_staff or request.user.is_superuser))
         # return bool(request.user and request.user.is_superuser)
